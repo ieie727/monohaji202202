@@ -10,13 +10,6 @@ const result = 3;
 let count = 0;
 
 
-//猫・虎の画像を用意
-const cat = new Image();
-cat.src = "image/cat.png";
-const tiger = new Image();
-tiger.src = "image/tiger.png"
-
-
 //動物の設定（X座標、Y座標、種類）
 let animal =new Image();
 let animalType = setAnimalType();
@@ -97,7 +90,7 @@ function draw(){
             let showAnimalX = 200;
             for(let i=0; i<count; i++){
                 showAnimalX = showAnimalX + 60;
-                ctx.drawImage(cat, showAnimalX, 250, 60, 60);
+                ctx.drawImage(animal, showAnimalX, 250, 60, 60);
             }
             clearInterval(id);
             return;
