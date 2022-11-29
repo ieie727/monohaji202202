@@ -22,7 +22,7 @@ const kotatsu = new Image();
 kotatsu.src = "image/kotatsu.png";
 
 
-//スタート・リスタートボタン
+//スタート・再スタートボタン
 const startButton = document.getElementById('start');
 let id;
 let flag = false;
