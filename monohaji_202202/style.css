@@ -1,0 +1,13 @@
+body{
+    background: #F4EADE;
+    text-align: center;
+}
+
+canvas{
+    background: #B8E2FC;
+}
+
+button{
+    display: block;
+    margin: auto;
+}
