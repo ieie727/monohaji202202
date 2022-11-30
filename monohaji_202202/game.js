@@ -6,25 +6,27 @@ const h = canvas.height;
 
 
 //答えとなる猫の数の設定とカウントの準備
-const result = 2;
+const result = getRandomNumber(1, 3);
 let count = 0;
 
 //動物の画像の読み込みや設定（種類、X座標、Y座標）
 let animal = new Image();
-animal.src = "image/cat.png";
-let animalType = "cat";
-let animalX = getRandomNumber(500,w);
-let animalY = getRandomNumber(0,h);
+let animalType = "";
+setAnimalType();
+let animalX = getRandomNumber(500, w);
+let animalY = getRandomNumber(0, h);
 
 
 //こたつの画像を用意
+const kotatsu = new Image();
+kotatsu.src = "image/kotatsu.png";
 
 
 //スタート・リスタートボタン
 const startButton = document.getElementById('start');
 let id;
 let flag = false;
-//kotatsu.onload = () => ctx.drawImage(kotatsu, 0, 200, 400, 200);
+kotatsu.onload = () => ctx.drawImage(kotatsu, 0, 200, 400, 200);
 startButton.addEventListener('click', () => {
     if(flag === false){
         //ゲーム開始の処理
@@ -67,37 +69,36 @@ function draw(){
         if(count < result){
             //動物の画像の読み込みや設定をし直す
             animal = new Image();
-            animal.src = "image/cat.png";
-            animalType = "cat";
-            animalX = getRandomNumber(500,w);
-            animalY = getRandomNumber(0,h);
+            animalType = "";
+            setAnimalType();
+            animalX = getRandomNumber(500, w);
+            animalY = getRandomNumber(0, h);
         }else{
             //答え合わせをして、ゲームを終了する
+            showAnswer();
             clearInterval(id);
             return;
         }
-            
-        
     }
 }
 
 
 //min(最小値)とmax(最大値)の間のランダムな整数を取得する。
-function getRandomNumber(min,max){
+function getRandomNumber(min, max){
     const randomNumber = Math.floor( Math.random() * ( max - min +1) + min );
     return randomNumber;
 }
 
 
-//乱数によって猫か虎かを決定する。
+//乱数によって猫か虎かを決定する(画像の読み込みも行う)
 function setAnimalType(){
     const randomNumber = getRandomNumber(0,1);
     if(randomNumber === 0){
         animal.src = "image/cat.png";
-        return "cat";
+        animalType = "cat";
     }else{
         animal.src = "image/tiger.png";
-        return "tiger";
+        animalType = "tiger";
     }
 }
 
@@ -120,7 +121,7 @@ function moveAnimal(){
 
 
 //正解発表の処理
-function showCorrectAnswer(){
+function showAnswer(){
     //描画の準備(初期化)
     ctx.fillStyle = "#B8E2FC";
     ctx.fillRect(0, 0, w, h);
@@ -132,12 +133,15 @@ function showCorrectAnswer(){
     ctx.font = "30px 'ＭＳ ゴシック'";
     ctx.fillStyle = "#333333";
     if(answer == count){    
-        ctx.fillText("正解！ 正解は" + count + "匹です。", 250, 100);
+        ctx.fillText("正解！ 猫は" + count + "匹です。", 250, 100);
     }else{
-        ctx.fillText("残念！ 正解は" + count + "匹です", 250, 100);
+        ctx.fillText("残念！ 猫は" + count + "匹です", 250, 100);
     }
     
     //正解数の猫を表示
-    
-    
+    let showAnimalX = 200;
+    for(let i=0; i<count; i++){
+        showAnimalX = showAnimalX + 60;
+        ctx.drawImage(animal, showAnimalX, 250, 60, 60);
+    }
 }
