@@ -1,32 +1,24 @@
 //キャンバスの取得・設定
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-const w = canvas.width;
-const h = canvas.height;
+
 
 
 //答えとなる猫の数の設定とカウントの準備
-const result = getRandomNumber(1,5);
-let count = 0;
+
 
 
 //動物の設定（X座標、Y座標、種類）
-let animal = new Image();
-let animalType = setAnimalType();
-let animalX = getRandomNumber(500,w);
-let animalY = getRandomNumber(0,h);
+
 
 
 //こたつの画像を用意
-const kotatsu = new Image();
-kotatsu.src = "image/kotatsu.png";
 
 
-//スタート・再スタートボタン
+
+//スタート・リスタートボタン
 const startButton = document.getElementById('start');
 let id;
 let flag = false;
-kotatsu.onload = () => ctx.drawImage(kotatsu, 0, 200, 400, 200);
+//kotatsu.onload = () => ctx.drawImage(kotatsu, 0, 200, 400, 200);
 startButton.addEventListener('click', () => {
     if(flag === false){
         //ゲーム開始の処理
@@ -43,40 +35,31 @@ startButton.addEventListener('click', () => {
 //メインとなる関数
 function draw(){
     //描画の準備(初期化)
-    ctx.fillStyle = "#B8E2FC";
-    ctx.fillRect(0, 0, w, h);
+    
 
     //当たり範囲の描画
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(150, 270, 100, 60);
+    
 
     //動物の描画・移動
-    ctx.drawImage(animal, animalX, animalY, 60, 60);
-    moveAnimal();
+    
 
     //こたつの描画
-    ctx.drawImage(kotatsu, 0, 200, 400, 200);
+    
 
 
     //動物が当たり範囲内に入った時の処理
     if(150 <= animalX  &&  animalX <= 250  &&  270 <= animalY  &&  animalY <= 330 ){
         //猫の場合はカウントを増やす
-        if(animalType === "cat"){
-            count++;
-        }
+        
 
         //猫の数が正解数に達するまで出現させて、答えまで達すると答え合わせの処理をする
-        if(count < result){
+        
             //動物の位置・種類の再設定
-            animalType = setAnimalType();
-            animalX = getRandomNumber(500,w);
-            animalY = getRandomNumber(0,h);
-        }else{
+            
+        
             //正解発表をしてゲームを終了する
-            showCorrectAnswer();
-            clearInterval(id);
-            return;
-        }
+            
+        
     }
 }
 
@@ -137,9 +120,6 @@ function showCorrectAnswer(){
     }
     
     //正解数の猫を表示
-    let showAnimalX = 200;
-    for(let i=0; i<count; i++){
-        showAnimalX = showAnimalX + 60;
-        ctx.drawImage(animal, showAnimalX, 250, 60, 60);
-    }
+    
+    
 }
