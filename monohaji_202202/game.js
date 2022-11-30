@@ -18,15 +18,13 @@ let animalY = getRandomNumber(0,h);
 
 
 //こたつの画像を用意
-const kotatsu = new Image();
-kotatsu.src = "image/kotatsu.png";
 
 
 //スタート・リスタートボタン
 const startButton = document.getElementById('start');
 let id;
 let flag = false;
-kotatsu.onload = () => ctx.drawImage(kotatsu, 0, 200, 400, 200);
+//kotatsu.onload = () => ctx.drawImage(kotatsu, 0, 200, 400, 200);
 startButton.addEventListener('click', () => {
     if(flag === false){
         //ゲーム開始の処理
