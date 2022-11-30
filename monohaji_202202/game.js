@@ -1,5 +1,8 @@
 //キャンバスの取得・設定
-
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const w = canvas.width;
+const h = canvas.height;
 
 
 //答えとなる猫の数の設定とカウントの準備
@@ -38,7 +41,8 @@ function draw(){
     
 
     //当たり範囲の描画
-    
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(150, 270, 100, 60);
 
     //動物の描画・移動
     
