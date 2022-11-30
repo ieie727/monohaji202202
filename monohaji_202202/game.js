@@ -10,7 +10,11 @@ const h = canvas.height;
 
 
 //動物の設定（X座標、Y座標、種類）
-
+let animal = new Image();
+animal.src = "image/cat.png";
+let animalType = "cat";
+let animalX = 700;
+let animalY = 270;
 
 
 //こたつの画像を用意
@@ -38,7 +42,8 @@ startButton.addEventListener('click', () => {
 //メインとなる関数
 function draw(){
     //描画の準備(初期化)
-   
+    ctx.fillStyle = "#B8E2FC";
+    ctx.fillRect(0, 0, w, h);
 
     //当たり範囲の描画
     ctx.fillStyle = "#ffffff";
@@ -48,7 +53,8 @@ function draw(){
     
 
     //こたつの描画
-    
+    ctx.drawImage(animal, animalX, animalY, 60, 60);
+    animalX = animalX - 1;
 
 
     //動物が当たり範囲内に入った時の処理
@@ -61,8 +67,12 @@ function draw(){
             //動物の位置・種類の再設定
             
         
-            //正解発表をしてゲームを終了する
-            
+            //正解発表をして、ゲームを終了する
+            //正解発表
+
+            //ゲーム終了
+            clearInterval(id);
+            return;
         
     }
 }
