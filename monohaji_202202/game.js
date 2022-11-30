@@ -12,8 +12,8 @@ const h = canvas.height;
 let animal = new Image();
 animal.src = "image/cat.png";
 let animalType = "cat";
-let animalX =700;
-let animalY =270;
+let animalX = 700;
+let animalY = 270;
 
 
 //こたつの画像を用意
@@ -65,9 +65,10 @@ function draw(){
             //動物の位置・種類の再設定
             
         
+            //正解発表をして、ゲームを終了する
             //正解発表
 
-            //ゲーム修了の処理
+            //ゲーム終了
             clearInterval(id);
             return;
             
