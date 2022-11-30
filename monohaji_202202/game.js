@@ -64,22 +64,22 @@ function draw(){
 }
 
 
-//min(最小値)とmax(最大値)の間のランダムな整数を取得する。
+//min(最小値)とmax(最大値)の間のランダムな整数を取得する
 function getRandomNumber(min,max){
     const randomNumber = Math.floor( Math.random() * ( max - min +1) + min );
     return randomNumber;
 }
 
 
-//乱数によって猫か虎かを決定する。
+//乱数によって猫か虎かを決定する(画像の読み込みも行う)
 function setAnimalType(){
     const randomNumber = getRandomNumber(0,1);
     if(randomNumber === 0){
         animal.src = "image/cat.png";
-        return "cat";
+        animalType = "cat";
     }else{
         animal.src = "image/tiger.png";
-        return "tiger";
+        animalType = "tiger";
     }
 }
 
