@@ -6,14 +6,15 @@ const h = canvas.height;
 
 
 //答えとなる猫の数の設定とカウントの準備
+const result = 2;
+let count = 0;
 
-
-//動物の画像の読み込みや設定（X座標、Y座標、種類）
+//動物の画像の読み込みや設定（種類、X座標、Y座標）
 let animal = new Image();
 animal.src = "image/cat.png";
 let animalType = "cat";
-let animalX = 700;
-let animalY = 270;
+let animalX = getRandomNumber(500,w);
+let animalY = getRandomNumber(0,h);
 
 
 //こたつの画像を用意
@@ -50,7 +51,7 @@ function draw(){
 
     //動物の描画・移動
     ctx.drawImage(animal, animalX, animalY, 60, 60);
-    animalX = animalX - 1;
+    moveAnimal();
 
     //こたつの描画
 
@@ -59,18 +60,23 @@ function draw(){
     //動物が当たり範囲内に入った時の処理
     if(150 <= animalX  &&  animalX <= 250  &&  270 <= animalY  &&  animalY <= 330 ){
         //猫の場合はカウントを増やす
+        if(animalType === "cat"){
+            count++;
+        }
 
         //猫の数が正解数に達するまで出現させて、答えまで達すると答え合わせの処理をする
-        
-            //動物の位置・種類の再設定
-            
-        
-            //正解発表をして、ゲームを終了する
-            //正解発表
-
-            //ゲーム終了
+        if(count < result){
+            //動物の画像の読み込みや設定をし直す
+            animal = new Image();
+            animal.src = "image/cat.png";
+            animalType = "cat";
+            animalX = getRandomNumber(500,w);
+            animalY = getRandomNumber(0,h);
+        }else{
+            //答え合わせをして、ゲームを終了する
             clearInterval(id);
             return;
+        }
             
         
     }
