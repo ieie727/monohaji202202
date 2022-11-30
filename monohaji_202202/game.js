@@ -8,12 +8,9 @@ const h = canvas.height;
 //答えとなる猫の数の設定とカウントの準備
 
 
-//動物の画像の読み込みや設定（X座標、Y座標、種類）
-let animal = new Image();
-animal.src = "image/cat.png";
-let animalType = "cat";
-let animalX =700;
-let animalY =270;
+
+//動物の設定（X座標、Y座標、種類）
+
 
 
 //こたつの画像を用意
@@ -41,57 +38,52 @@ startButton.addEventListener('click', () => {
 //メインとなる関数
 function draw(){
     //描画の準備(初期化)
-    ctx.fillStyle = "#B8E2FC";
-    ctx.fillRect(0, 0, w, h);
+   
 
     //当たり範囲の描画
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(150, 270, 100, 60);
 
     //動物の描画・移動
-    ctx.drawImage(animal, animalX, animalY, 60, 60);
-    animalX = animalX - 1;
+    
 
     //こたつの描画
-
+    
 
 
     //動物が当たり範囲内に入った時の処理
     if(150 <= animalX  &&  animalX <= 250  &&  270 <= animalY  &&  animalY <= 330 ){
         //猫の場合はカウントを増やす
+        
 
         //猫の数が正解数に達するまで出現させて、答えまで達すると答え合わせの処理をする
         
             //動物の位置・種類の再設定
             
         
-            //正解発表
-
-            //ゲーム修了の処理
-            clearInterval(id);
-            return;
+            //正解発表をしてゲームを終了する
             
         
     }
 }
 
 
-//min(最小値)とmax(最大値)の間のランダムな整数を取得する。
+//min(最小値)とmax(最大値)の間のランダムな整数を取得する
 function getRandomNumber(min,max){
     const randomNumber = Math.floor( Math.random() * ( max - min +1) + min );
     return randomNumber;
 }
 
 
-//乱数によって猫か虎かを決定する。
+//乱数によって猫か虎かを決定する(画像の読み込みも行う)
 function setAnimalType(){
     const randomNumber = getRandomNumber(0,1);
     if(randomNumber === 0){
         animal.src = "image/cat.png";
-        return "cat";
+        animalType = "cat";
     }else{
         animal.src = "image/tiger.png";
-        return "tiger";
+        animalType = "tiger";
     }
 }
 
