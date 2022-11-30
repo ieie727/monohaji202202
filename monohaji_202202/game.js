@@ -1,12 +1,11 @@
 //キャンバスの取得・設定
 
 
-
 //答えとなる猫の数の設定とカウントの準備
 
 
 
-//動物の設定（X座標、Y座標、種類）
+//動物の画像の読み込みや設定（種類、X座標、Y座標）
 
 
 
@@ -14,7 +13,7 @@
 
 
 
-//スタート・リスタートボタン
+//スタート・再スタートボタン
 const startButton = document.getElementById('start');
 let id;
 let flag = false;
@@ -36,11 +35,14 @@ startButton.addEventListener('click', () => {
 function draw(){
     //描画の準備(初期化)
     
+    
 
     //当たり範囲の描画
+   
     
 
     //動物の描画・移動
+   
     
 
     //こたつの描画
@@ -54,24 +56,26 @@ function draw(){
 
         //猫の数が正解数に達するまで出現させて、答えまで達すると答え合わせの処理をする
         
-            //動物の位置・種類の再設定
+
+            //動物の画像の読み込みや設定をし直す
             
-        
-            //正解発表をしてゲームを終了する
+
+
+            //答え合わせをして、ゲームを終了する
             
-        
+            
     }
 }
 
 
 //min(最小値)とmax(最大値)の間のランダムな整数を取得する
-function getRandomNumber(min,max){
+function getRandomNumber(min, max){
     const randomNumber = Math.floor( Math.random() * ( max - min +1) + min );
     return randomNumber;
 }
 
 
-//乱数によって猫か虎かを決定する(画像の読み込みも行う)
+//猫か虎かを決めて、画像の読み込みを行う
 function setAnimalType(){
     const randomNumber = getRandomNumber(0,1);
     if(randomNumber === 0){
@@ -102,7 +106,7 @@ function moveAnimal(){
 
 
 //正解発表の処理
-function showCorrectAnswer(){
+function showAnswer(){
     //描画の準備(初期化)
     ctx.fillStyle = "#B8E2FC";
     ctx.fillRect(0, 0, w, h);
@@ -114,9 +118,9 @@ function showCorrectAnswer(){
     ctx.font = "30px 'ＭＳ ゴシック'";
     ctx.fillStyle = "#333333";
     if(answer == count){    
-        ctx.fillText("正解！ 正解は" + count + "匹です。", 250, 100);
+        ctx.fillText("正解！ 猫は" + count + "匹です。", 250, 100);
     }else{
-        ctx.fillText("残念！ 正解は" + count + "匹です", 250, 100);
+        ctx.fillText("残念！ 猫は" + count + "匹です", 250, 100);
     }
     
     //正解数の猫を表示
